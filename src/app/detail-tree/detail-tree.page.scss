@@ -1,0 +1,32 @@
+ion-slide {
+    border-radius: 25px 25px 5px 5px;
+    overflow: hidden;
+    height: 230px;      
+
+    img {
+        object-fit: fill;
+        height: 100%;
+    }
+}
+
+.empty-content {
+    width: 80%;
+    margin: auto;
+
+    figure {
+        width: 60%;
+        text-align: center;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    p {
+        text-align: center;
+    }
+}

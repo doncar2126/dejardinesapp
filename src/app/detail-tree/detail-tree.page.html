@@ -1,0 +1,66 @@
+<section class="header-app">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+  </section>
+  
+  <ion-content>
+    <ion-searchbar placeholder="Buscar individuo o árbol"></ion-searchbar>
+  
+    <section class="design-header">
+        <img src="./assets/images/bg-projects.jpg">
+        <span class="gradient"></span>
+        <span class="design-sphere"></span>
+    </section>
+  
+    <ion-card *ngIf="IndividualsFloraService.individial_empty == false">
+        <ion-card-header>
+            <ion-slides>
+                <ion-slide *ngIf="individuals.photo_silhouette != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_silhouette}}">
+                </ion-slide>
+                <ion-slide *ngIf="individuals.photo_flowers != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_flowers}}">
+                </ion-slide>
+                <ion-slide *ngIf="individuals.photo_fruits != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_fruits}}">
+                </ion-slide>
+                <ion-slide *ngIf="individuals.photo_leaves != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_leaves}}">
+                </ion-slide>
+                <ion-slide *ngIf="individuals.photo_polite != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_polite}}">
+                </ion-slide>
+                <ion-slide *ngIf="individuals.photo_seeds != ''">
+                    <img src="https://florayfauna.app/server/public/images/individuals/{{individuals.photo_seeds}}">
+                </ion-slide>
+                
+              </ion-slides>
+          <ion-card-title>{{individuals.common_name}}</ion-card-title>
+          <ion-card-subtitle>Familia: <strong>{{individuals.family_name}}</strong></ion-card-subtitle>
+          <ion-card-subtitle>Color de flores: <strong>{{individuals.color_flower}}</strong></ion-card-subtitle>
+          <ion-card-subtitle>Color de frutos: <strong>{{individuals.fruit_color}}</strong></ion-card-subtitle>
+          <ion-card-subtitle>Alto de copa: <strong>{{individuals.cup_height}}</strong></ion-card-subtitle>
+          <ion-card-subtitle>Alto total: <strong>{{individuals.total_height}}</strong></ion-card-subtitle>
+        </ion-card-header>
+        
+        <ion-card-content>
+          <p>
+              {{individuals.observations}}
+          </p>
+        </ion-card-content>
+
+      </ion-card>
+
+      <section class="empty-content" *ngIf="IndividualsFloraService.individial_empty == true">
+          <figure>
+              <img src="./assets/images/error.svg">
+          </figure>
+          <h1>Individuo no encontrado</h1>
+          <p>El individuo que esta busando no se encuentra habilitado o no existe, por favor inténtelo de nuevo</p>
+      </section>
+  
+  
+  </ion-content>
+  

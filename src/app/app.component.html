@@ -1,0 +1,56 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu>
+      <ion-header>
+
+        <section class="profile">
+            <span class="image-profile">
+              <img src="https://florayfauna.app/server/public/images/users/{{general.user}}-{{general.user_id}}.jpg?version={{this.general.version}}">
+            </span>
+            <p>{{general.user_name}}</p>
+        </section>
+
+        <section class="config-tools">
+            <ion-icon name="settings" (click)="configCustomer()"></ion-icon>
+            <ion-icon name="person" (click)="configUser()"></ion-icon>
+        </section>
+
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+
+            <ion-item [routerDirection]="'root'" [routerLink]="['/home-general']">
+              <ion-icon slot="start" [name]="'home'"></ion-icon>
+              <ion-label>
+                Principal
+              </ion-label>
+            </ion-item>
+
+            <ion-item *ngIf="general.home_user != true" [routerDirection]="'root'" [routerLink]="['/projects']">
+              <ion-icon slot="start" [name]="'list'"></ion-icon>
+              <ion-label>
+                Projectos
+              </ion-label>
+            </ion-item>
+
+            <ion-item *ngIf="general.home_user == true" [routerDirection]="'root'" [routerLink]="['/home']">
+              <ion-icon slot="start" [name]="'log-out'"></ion-icon>
+              <ion-label>
+                Iniciar sesión
+              </ion-label>
+            </ion-item>
+
+            <ion-item *ngIf="general.home_user != true" [routerDirection]="'root'" [routerLink]="['/home']" (click)="logOut()">
+              <ion-icon slot="start" [name]="'log-out'"></ion-icon>
+              <ion-label>
+                Cerrar sesión
+              </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

@@ -1,0 +1,42 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</section>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" placeholder="Buscar individuo o árbol"></ion-searchbar>
+
+  <section class="design-header">
+      <h1>Individuos o árboles</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-item *ngFor="let individuals_flora of this.IndividualsFloraService.individuals_flora.data;">
+    <ion-icon name="more" (click)="showActions($event, individuals_flora.id, individuals_flora.id_plot_zone, parent_type)"></ion-icon>
+    <ion-avatar slot="start">
+      <img src="https://florayfauna.app/server/public/images/individuals/{{individuals_flora.photo_silhouette}}?version={{individuals_flora.version}}">
+    </ion-avatar>
+    <ion-label (click)="detailIndividual(individuals_flora.id)">
+      <h2>{{individuals_flora.common_name}}</h2>
+      <h3>{{individuals_flora.cup_height}} - <strong>{{individuals_flora.total_height}}</strong></h3>
+      <p>Color de flores: {{individuals_flora.color_flower}}, color de frutos: {{individuals_flora.fruit_color}}, {{individuals_flora.observations}}</p>
+    </ion-label>
+  </ion-item>
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event, this.IndividualsFloraService.individuals_flora.to, this.IndividualsFloraService.individuals_flora.total)">
+    <ion-infinite-scroll-content
+      loadingSpinner="bubbles"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newIndividual()" *ngIf="verifyAll()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

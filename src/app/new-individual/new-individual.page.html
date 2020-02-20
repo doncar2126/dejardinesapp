@@ -1,0 +1,196 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  
+</section>
+
+<ion-content>
+  <section class="space-header"></section>
+  <section class="design-header">
+      <h1>Crear individuo</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-grid padding>  
+    <ion-row>
+      <ion-col size="6">
+          <ion-input class="input-white" placeholder="Código:" value="{{this.code_individual}}"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-select [(ngModel)]="individuals.id_species" class="input-white" value="{{individuals.id_species}}" okText="Aceptar" cancelText="Cancelar" (ionChange)="dataRelSpecies($event)">
+          <ion-select-option selected value="0">Seleccione especie:</ion-select-option>
+          <ion-select-option *ngFor="let specie of this.IndividualsFloraService.species_list" [selected]="specie.id == individuals.id_species" value="{{specie.id}}">{{specie.gender_name}} {{specie.epithet_name}}</ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.family_name" value="{{this.IndividualsFloraService.individuals.family_name}}" class="input-white" placeholder="Familia:"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+          <ion-input [(ngModel)]="individuals.common_name" value="{{this.IndividualsFloraService.individuals.common_name}}" class="input-white" placeholder="Nombre común:"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.diameter_dap" class="input-white" [ngClass]="{'mts': (individuals.diameter_dap > 0)}" type="number" placeholder="Diámetro tronco: (DAP)"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.circumference_cap" class="input-white" [ngClass]="{'mts': (individuals.circumference_cap > 0)}" type="number" placeholder="Circunf. tronco: (CAP)"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.cup_diameter_x" class="input-white" [ngClass]="{'mts': (individuals.cup_diameter_x > 0)}" type="number" placeholder="Diámetro de copa X"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.cup_diameter_y" class="input-white" [ngClass]="{'mts': (individuals.cup_diameter_y > 0)}" type="number" placeholder="Diámetro de copa Y:"></ion-input>
+      </ion-col>
+
+      <ion-col size="4">
+          <ion-input [(ngModel)]="individuals.total_height" class="input-white" [ngClass]="{'mts': (individuals.total_height > 0)}" type="number" placeholder="Altura total:"></ion-input>
+      </ion-col>
+
+      <ion-col size="4">
+        <ion-input [(ngModel)]="individuals.cup_height" class="input-white" [ngClass]="{'mts': (individuals.cup_height > 0)}" type="number" placeholder="Alt. de copa:"></ion-input>
+      </ion-col>
+      
+      <ion-col size="4">
+          <ion-input [(ngModel)]="individuals.commercial_height" class="input-white" [ngClass]="{'mts': (individuals.commercial_height > 0)}" type="number" placeholder="Alt. comercial:"></ion-input>
+      </ion-col>
+
+      
+    <ion-col size="6">
+      <ion-input [(ngModel)]="individuals.color_flower" class="input-white" placeholder="Color flor:"></ion-input>
+    </ion-col>
+
+    <ion-col size="6">
+        <ion-input [(ngModel)]="individuals.fruit_color" class="input-white" placeholder="Color fruto:"></ion-input>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-textarea [(ngModel)]="individuals.observations" class="input-white" placeholder="Observaciones:"></ion-textarea>
+    </ion-col>
+
+    <ion-col size="12">
+      <label class="label-col">Especie asociada</label>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-select [(ngModel)]="individuals.id_related_zone" class="input-white" value="{{individuals.id_related_zone}}" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option value="">Seleccione zona o parcela:</ion-select-option>
+        <ion-select-option value="1">Zona 1</ion-select-option>
+        <ion-select-option value="2">Parcela 2</ion-select-option>
+        <ion-select-option value="3">Zona 3</ion-select-option>
+      </ion-select>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-select [(ngModel)]="individuals.id_related_individual" class="input-white" value="{{individuals.id_related_individual}}" okText="Aceptar" cancelText="Cancelar">
+        <ion-select-option value="">Seleccione individuo:</ion-select-option>
+        <ion-select-option value="1">individuo 1</ion-select-option>
+        <ion-select-option value="2">individuo 2</ion-select-option>
+        <ion-select-option value="3">individuo 3</ion-select-option>
+      </ion-select>
+    </ion-col>
+
+    <ion-col size="12">
+      <h1 class="title-middle">
+        Registro Fotografico
+      </h1>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Silueta *</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_silhouette" class="img-browser" (change)="setImageBrowser1()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_silhouette}}">
+        <small>Cargar imagen</small>
+        <label>Silueta *</label>
+      </article>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Corteza</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_polite" class="img-browser" (change)="setImageBrowser2()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_polite}}">
+        <small>Cargar imagen</small>
+        <label>Corteza</label>
+      </article>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Hojas</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_leaves" class="img-browser" (change)="setImageBrowser3()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_leaves}}">
+        <small>Cargar imagen</small>
+        <label>Hojas</label>
+      </article>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Flores</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_flowers" class="img-browser" (change)="setImageBrowser4()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_flowers}}">
+        <small>Cargar image 1</small>
+        <label>Flores</label>
+      </article>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Frutos</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_fruits" class="img-browser" (change)="setImageBrowser5()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_fruits}}">
+        <small>Cargar imagen</small>
+        <label>Frutos</label>
+      </article>
+    </ion-col>
+
+    <ion-col size="6">
+      <label class="label-photos">Semillas</label>
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-photo_seeds" class="img-browser" (change)="setImageBrowser6()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{individuals.photo_seeds}}">
+        <small>Cargar imagen</small>
+        <label>Semillas</label>
+      </article>
+    </ion-col>
+
+    <ion-input class="input-hidden" [(ngModel)]="individuals.parent_type" type="hidden" value="{{individuals.parent_type}}"></ion-input>
+
+    <ion-col size="4">
+      <ion-button color="danger" (click)="cancelCreationIndividual(individuals.parent_type)">Cancelar</ion-button>
+    </ion-col>
+
+    <ion-col size="4">
+      
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-button color="success" (click)="validateCreate(false)">Guardar</ion-button>
+    </ion-col>
+
+    </ion-row>
+    </ion-grid>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  
+</section>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" placeholder="Buscar zona o parcela"></ion-searchbar>
+
+  <section class="design-header">
+      <h1>Parcelas o zonas</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <section class="plots">
+
+    <article *ngFor="let plot of this.plotService.plots" class="plot">
+      <ion-icon name="more" (click)="showActions($event, plot.id, plot.project_id, plot.set_type)"></ion-icon>
+      
+      <span *ngIf="plot.set_type == 'plot'" (click)="individual(plot.set_type, plot.id)">
+        <figure>
+            <img src="https://florayfauna.app/server/public/images/plots/{{plot.photo_plot}}?version={{plot.version}}">
+        </figure>
+        <section class="data-plog">
+            <h1>{{plot.plot_code}}</h1>
+            <p>{{plot.name_plot}}</p>
+            <small>{{plot.long_plot}} - lat:{{plot.latitude_plot}} - {{plot.plot_length}}</small>
+        </section>
+      </span>
+
+      <span *ngIf="plot.set_type == 'zone'" (click)="individual(plot.set_type, plot.id)">  
+          <figure>
+              <img src="https://florayfauna.app/server/public/images/zones/{{plot.photo_zone}}?version={{plot.version}}">
+          </figure>
+  
+          <section class="data-plog">
+              <h1>{{plot.zone_code}}</h1>
+              <p>{{plot.zone_name}}</p>
+              <small>{{plot.zone_area_m2}} - lat:{{plot.latitude_zone}} - {{plot.zone_length}}</small>
+          </section>
+  
+      </span>
+
+    </article>
+
+  </section>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newZonePopover($event)">
+      <ion-fab-button>
+        <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>

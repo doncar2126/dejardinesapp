@@ -1,0 +1,36 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</section>
+
+<ion-content>    
+  <ion-searchbar [(ngModel)]="searchTerm" (ionChange)="setFilteredItems()" placeholder="Buscar proyecto"></ion-searchbar>
+
+  <section class="design-header">
+      <h1>Proyectos</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-card *ngFor="let project of this.projectsService.projects">
+
+    <ion-icon name="more" (click)="showActions($event, project.id)"></ion-icon>
+    <ion-card-header>
+      <figure (click)="plot(project.id)" class="project-image">
+        <img src="https://florayfauna.app/server/public/images/projects/{{project.project_photo}}?version={{project.version}}">
+      </figure>
+      <ion-card-subtitle>{{project.project_address}}</ion-card-subtitle>
+      <ion-card-title>{{project.name_project}}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" (click)="newProject()">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

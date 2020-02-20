@@ -1,0 +1,126 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  
+</section>
+
+<ion-content>
+  <section class="space-header"></section>
+  <section class="design-header">
+      <h1>Crar Parcelas</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-grid padding>  
+    <ion-row>
+      <ion-col size="3">
+          <ion-input [(ngModel)]="plot.plot_code" class="input-white" placeholder="Código"></ion-input>
+      </ion-col>
+
+      <ion-col size="9">
+        <ion-input [(ngModel)]="plot.name_plot" class="input-white" placeholder="Nombre parcela:"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input [(ngModel)]="plot.altitude_plot" class="input-white" placeholder="Altitud (m.s.n.m):"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-select [(ngModel)]="plot.id_plot_form" value="{{plot.id_plot_form}}" class="input-white" okText="Aceptar" cancelText="Cancelar" (ionChange)="typePlot($event)">
+          <ion-select-option value="">Forma de parcela:</ion-select-option>
+          <ion-select-option value="1">Cuadrada</ion-select-option>
+          <ion-select-option value="2">Rectangular</ion-select-option>
+          <ion-select-option value="3">Circular</ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-row *ngIf="typeSquare">
+          <ion-col size="6">
+            <ion-input [(ngModel)]="plot.long_plot" class="input-white" placeholder="Largo (m):"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+              <ion-input [(ngModel)]="plot.wide_plot" class="input-white" placeholder="Ancho (m):"></ion-input>
+          </ion-col>
+        </ion-row>
+        
+        <ion-row *ngIf="typeCirc">
+          <ion-col size="6">
+            <ion-input [(ngModel)]="plot.plot_diameter" class="input-white" placeholder="Diametro"></ion-input>
+          </ion-col>
+          <ion-col size="6">
+              <ion-input [(ngModel)]="plot.radio_plot" class="input-white" placeholder="Radio"></ion-input>
+          </ion-col>
+        </ion-row>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-select [(ngModel)]="plot.id_life_zone" value="{{plot.id_life_zone}}" class="input-white" name="{{plot.id_life_zone}}" value="{{plot.id_life_zone}}" okText="Aceptar" cancelText="Cancelar" (ionChange)="typePlot($event)">
+          <ion-select-option value="">Zona de vida</ion-select-option>
+          <ion-select-option value="1">Vida 1</ion-select-option>
+          <ion-select-option value="2">Vida 2</ion-select-option>
+        </ion-select>
+      </ion-col>
+
+      <ion-col size="12">
+        <label>Posición geográfica</label>
+      </ion-col>
+  
+      <ion-col size="6">
+        <ion-input [(ngModel)]="plot.latitude_plot" class="input-white" placeholder="Latitud: °/ '/ &quot;/- /"></ion-input>
+      </ion-col>
+  
+      <ion-col size="6">
+          <ion-input [(ngModel)]="plot.plot_length" class="input-white" placeholder="Longitud: °/ '/ &quot;/- /'"></ion-input>
+      </ion-col>
+  
+      <ion-col size="12">
+        <ion-input [(ngModel)]="plot.responsable_name_plot" class="input-white" placeholder="Responsable del registro:"></ion-input>
+      </ion-col>
+
+    <ion-col size="6">
+      <ion-input [(ngModel)]="plot.responsable_cel_plot" class="input-white" placeholder="Teléfono o celular:"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+        <ion-input [(ngModel)]="plot.responsable_mail_plot" class="input-white" placeholder="Email:"></ion-input>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-textarea [(ngModel)]="plot.observations_plot"  class="input-white" placeholder="Observaciones:"></ion-textarea>
+    </ion-col>
+
+    <ion-col size="12">
+      <span *ngIf="currentPlatform">
+        <input type="file" id="img-project" class="img-browser" (change)="setImageBrowser()">
+      </span>
+      <article class="load-image" (click)="presentActionSheet()">
+        <img src="{{plot.photo_plot}}">
+        <small>Cargar imagen de la parcela</small>
+      </article>
+    </ion-col>
+
+    <ion-input class="input-hidden" [(ngModel)]="plot.project_id" type="hidden"></ion-input>
+
+    <ion-col size="4">
+      <span *ngIf="this.edit == 'true'">
+        <ion-button color="success" (click)="validateCreate(true)">Guardar cambios</ion-button>
+      </span>
+
+      <span *ngIf="this.edit != 'true'">
+          <ion-button color="success" (click)="validateCreate(false)">Guardar</ion-button>
+      </span>
+    </ion-col>
+
+    <ion-col size="4"></ion-col>
+
+    <ion-col size="4">
+      <ion-button color="danger" (click)="cancelCreationPlot(this.plotService.plot.project_id)">Cancelar</ion-button>
+    </ion-col>
+
+    </ion-row>
+    </ion-grid>
+
+</ion-content>

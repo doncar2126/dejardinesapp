@@ -1,0 +1,69 @@
+ion-toolbar {
+  --ion-background-color: transparent;
+  background: transparent;
+}
+
+ion-content {
+   background: url('../../assets/images/bg-login.jpg');
+   background-size: cover;
+   background-position: 20%;
+   --ion-background-color: rgba(0,0,0,0.7);
+
+   .logo-login {
+      width: 60%;
+      margin: 20px auto;
+
+      img {
+        width: 100%;
+      }
+   }
+
+   ion-grid {
+     height: 100%;
+
+     ion-row {
+       height: 100%;
+     }
+   }
+
+    ion-input{
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(0, 0, 0, 0.4);
+      height: 45px;
+      width: 90%;
+      color: #fff;
+      font-weight: 100;
+      margin: 10px auto;
+      border-radius: 5px;
+    }
+
+    .input-hidden {
+      display: none !important;
+    }
+
+    ion-button {
+      display: block;
+      margin: auto;
+      width: 90%;
+      --ion-color-base: #007331 !important;
+    }
+
+    .social-login {
+      width: 130px;
+      color: #fff;
+      position: absolute;
+      bottom: 15px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      font-size: 30px;
+
+      ion-label {
+        font-size: 15px;
+        text-align: center;
+        font-weight: 100;
+        width: 100%;
+        display: block;
+      }
+    }
+} 

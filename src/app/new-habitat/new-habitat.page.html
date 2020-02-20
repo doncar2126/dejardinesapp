@@ -1,0 +1,89 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  
+</section>
+
+<ion-content>
+  <section class="space-header"></section>
+  <section class="design-header">
+      <h1>Proyecto 1</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-grid padding>  
+    <ion-row>
+      <ion-col size="3">
+          <ion-input class="input-white" placeholder="Código"></ion-input>
+      </ion-col>
+
+      <ion-col size="9">
+        <ion-input class="input-white" placeholder="Nombre Habitat:"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+        <ion-input class="input-white" placeholder="Área m2"></ion-input>
+      </ion-col>
+
+      <ion-col size="6">
+          <ion-input class="input-white" placeholder="Altitud m.s.r"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-select  class="input-white" value="vida2" okText="Aceptar" cancelText="Cancelar">
+          <ion-select-option value="vida">Zona de vida</ion-select-option>
+          <ion-select-option value="vida2">Zona de vida2</ion-select-option>
+          <ion-select-option value="brown">Zona de vida3</ion-select-option>
+          <ion-select-option value="brown">Zona de vida4</ion-select-option>
+        </ion-select>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-input class="input-white" placeholder="Latitud"></ion-input>
+    </ion-col>
+
+    <ion-col size="6">
+        <ion-input class="input-white" placeholder="Longitud"></ion-input>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-input class="input-white" placeholder="Coordenadas X"></ion-input>
+    </ion-col>
+    
+    <ion-col size="6">
+        <ion-input class="input-white" placeholder="Coordenadas Y"></ion-input>
+    </ion-col>
+
+    <ion-col size="12">
+        <ion-input class="input-white" placeholder="Responsable de la creación del registro"></ion-input>
+    </ion-col>
+
+    <ion-col size="6">
+      <ion-input class="input-white" placeholder="Teléfono o Celular"></ion-input>
+    </ion-col>
+    <ion-col size="6">
+        <ion-input class="input-white" placeholder="Correo electronico"></ion-input>
+    </ion-col>
+
+    <ion-col size="12">
+      <ion-textarea class="input-white" placeholder="Observaciones"></ion-textarea>
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-button color="danger" (click)="cancelCreationHabitat()">Cancelar</ion-button>
+    </ion-col>
+
+    <ion-col size="4">
+      
+    </ion-col>
+
+    <ion-col size="4">
+      <ion-button color="success">Guardar</ion-button>
+    </ion-col>
+    </ion-row>
+    </ion-grid>
+
+</ion-content>

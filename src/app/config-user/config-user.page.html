@@ -1,0 +1,63 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+  
+</section>
+
+<ion-content>
+  <section class="space-header"></section>
+  <section class="design-header">
+      <h1>Configuración de usuario</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <ion-grid padding>  
+    <ion-row>
+      <ion-col size="12">
+          <ion-input [(ngModel)]="user.username" required="true" type="text" disabled class="input-white" placeholder="Usuario:"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+          <ion-input [(ngModel)]="user.user_name" required="true" type="text" class="input-white" placeholder="Nombre completo:"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input [(ngModel)]="user.user_cel" type="text" class="input-white" placeholder="Celular:"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input [(ngModel)]="user.user_mail" type="text" class="input-white" placeholder="Email:"></ion-input>
+      </ion-col>
+
+      <ion-col size="12">
+        <ion-input [(ngModel)]="user.user_pass" type="password" class="input-white" autocomplete="new-password" placeholder="Cambiar contraseña:"></ion-input>
+      </ion-col>
+
+      <ion-input class="input-hidden" [(ngModel)]="user.code" type="hidden"></ion-input>
+      <ion-input class="input-hidden" [(ngModel)]="user.profile_photo" type="hidden" value="{{image}}"></ion-input>
+
+      <ion-col size="12">
+        <span *ngIf="currentPlatform">
+          <input type="file" id="img-user" class="img-browser" (change)="setImageBrowser()">
+        </span>
+        <article class="load-image" (click)="presentActionSheet()">
+            <img src="{{user.profile_photo}}">
+          <small>Cargar imagen del usuario</small>
+        </article>
+      </ion-col>
+    
+      <ion-col size="4">
+          <ion-button color="success" (click)="updateUser()">Guardar</ion-button>
+      </ion-col>
+
+      <ion-col size="4"></ion-col>
+
+      <ion-col size="4"></ion-col>
+    
+    </ion-row>
+    </ion-grid>
+
+</ion-content>

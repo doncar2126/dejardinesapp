@@ -1,0 +1,48 @@
+<section class="header-app">
+  <ion-buttons slot="start">
+    <ion-menu-button></ion-menu-button>
+  </ion-buttons>
+</section>
+
+<ion-content>    
+  <br><br>
+  <section class="design-header">
+      <h1>Bienvenido</h1>
+      <img src="./assets/images/bg-projects.jpg">
+      <span class="gradient"></span>
+      <span class="design-sphere"></span>
+  </section>
+
+  <section class="general-title">
+    <h1>Lo más visto</h1>
+  </section>
+
+  <section class="most-view">
+
+    <article class="most-item" *ngFor="let individuals_flora of this.IndividualsFloraService.individuals_flora" (click)="detailIndividual(individuals_flora.id)">
+      <figure>
+          <img src="https://florayfauna.app/server/public/images/individuals/{{individuals_flora.photo_silhouette}}">
+          <h2><p>{{individuals_flora.common_name}}</p></h2>
+      </figure>
+    </article>
+
+      <p>
+          Bienvenido a Djardines, en nuestra APP encontraras gran variedad de individuos y sus 
+          características para conocer el origen, los cuidados y generalidad más relevantes.
+      </p>
+
+        <!--
+        <input id="text" type="text" value="1" style="width:80%" /><br />
+        <input id="text2" type="text" value="2" style="width:80%" /><br />
+        <div id="qrcode" style="width:100px; height:100px; margin-top:15px;"></div>
+        <div id="qrcode2" style="width:100px; height:100px; margin-top:15px;"></div>
+        -->
+  </section>
+
+    <section class="btns-home">
+      <a role="button" class="btn-list" (click)="list()">Ver listado completo</a>
+      <a role="button" class="btn-scan-qr" (click)="scan()">Escanear QR</a>
+    </section>
+
+
+</ion-content>
